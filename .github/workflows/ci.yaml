@@ -1,8 +1,12 @@
 name: Golang Docker Build
 
 on:
+  push:
+    branches:
+      - '**'
   release:
-    types: [published]
+    types:
+      - published
 
   # LET THE PIPELINE TRIGGER ON A PUSH TO ALL BRANCHES
 
