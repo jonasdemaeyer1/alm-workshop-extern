@@ -1,0 +1,31 @@
+name: Release Application
+
+on:
+  push:
+    branches:
+      - 'dev'
+  # ADD YOUR TRIGGER HERE
+
+env:
+  OPENSHIFT_SERVER: 'https://api.rm3.7wse.p1.openshiftapps.com:6443'
+  OPENSHIFT_NAMESPACE: 'jonasdemaeyer1-dev'
+
+jobs:
+  deploy:
+    if: # ADD YOUR CONDITION HERE
+    environment: development
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Login OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+
+      - name: Apply Openshift YAML
+        run: |
+          kubectl apply -f infra/openshift.yaml -n $OPENSHIFT_NAMESPACE
