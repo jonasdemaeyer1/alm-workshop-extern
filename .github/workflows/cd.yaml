@@ -9,7 +9,7 @@ on:
 env:
   OPENSHIFT_SERVER: 'https://api.rm3.7wse.p1.openshiftapps.com:6443'
   OPENSHIFT_NAMESPACE: 'jonasdemaeyer1-dev'
-  OPENSHIFT_TOKEN: 'sha256~IckqjJmVEPugjhRu6IgxDX8crfe8r1XZGl15Ga1rcmc'
+  OPENSHIFT_TOKEN: 'IckqjJmVEPugjhRu6IgxDX8crfe8r1XZGl15Ga1rcmc'
 
 jobs:
   deploy:
